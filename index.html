@@ -158,6 +158,124 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-babel7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/12/babel7/">babel7 简易升级</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/12/babel7/" class="archive-article-date">
+  	<time datetime="2018-09-12T08:12:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="主要更新"><a href="#主要更新" class="headerlink" title="主要更新"></a>主要更新</h2><ul>
+<li>放弃维护的 node 版本 0.10、0.12、4、5</li>
+<li>包使用 @babel 命名空间</li>
+<li>@babel/preset-env 代替年度preset<ul>
+<li>可以使用配置选项 useBuiltIns: ‘entry’ 按需导入</li>
+<li>可以使用 useBuiltIns: ‘usage’ 自动按使用到的 polyfill导入</li>
+</ul>
+</li>
+<li>TC39 提议的插件改名为 -proposal，代替 -transform</li>
+<li>针对面向用户的包（如 babel-loader、@babel/cli）在 @babel/core 中引入 peerDependency</li>
+<li>速度提升、代码优化</li>
+</ul>
+<h2 id="升级步骤"><a href="#升级步骤" class="headerlink" title="升级步骤"></a>升级步骤</h2><h3 id="使用babel升级工具-or-改package-json"><a href="#使用babel升级工具-or-改package-json" class="headerlink" title="使用babel升级工具 or 改package.json"></a>使用babel升级工具 or 改package.json</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tnpm install babel-upgrade -g</span><br><span class="line">babel-upgrade --write</span><br></pre></td></tr></table></figure>
+<p>or devDependencies中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&quot;@babel/cli&quot;: &quot;^7.0.0&quot;,</span><br><span class="line">&quot;@babel/core&quot;: &quot;^7.0.0&quot;,</span><br><span class="line">&quot;@babel/plugin-proposal-class-properties&quot;: &quot;^7.0.0&quot;,</span><br><span class="line">&quot;@babel/plugin-proposal-decorators&quot;: &quot;^7.0.0&quot;,</span><br><span class="line">&quot;@babel/plugin-transform-runtime&quot;: &quot;^7.0.0&quot;,</span><br><span class="line">&quot;@babel/preset-env&quot;: &quot;^7.0.0&quot;,</span><br><span class="line">&quot;@babel/preset-react&quot;: &quot;^7.0.0&quot;,</span><br><span class="line">&quot;babel-core&quot;: &quot;^7.0.0-bridge.0&quot;,</span><br><span class="line">&quot;babel-eslint&quot;: &quot;*&quot;,</span><br><span class="line">&quot;babel-loader&quot;: &quot;^8.0.0&quot;,</span><br></pre></td></tr></table></figure></p>
+<h3 id="配置更改"><a href="#配置更改" class="headerlink" title="配置更改"></a>配置更改</h3><ul>
+<li><p>修改所有 bable-polyfill 为 @babel/polyfill</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// index.js 头部导入修改</span><br><span class="line">import &apos;@babel/polyfill&apos;</span><br><span class="line"></span><br><span class="line">// webpack config 入口修改</span><br><span class="line">entry: [&apos;@babel/polyfill&apos;, &apos;./src/index.js&apos;],</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>.babelrc</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [</span><br><span class="line">    [</span><br><span class="line">      &quot;@babel/preset-env&quot;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;loose&quot;: true,</span><br><span class="line">        &quot;useBuiltIns&quot;: &quot;entry&quot;,</span><br><span class="line">        &quot;targets&quot;: &#123;</span><br><span class="line">          &quot;browsers&quot;: [</span><br><span class="line">            &quot;last 2 versions&quot;,</span><br><span class="line">            &quot;IE &gt;= 9&quot;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;@babel/preset-react&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">      [</span><br><span class="line">        &quot;@babel/plugin-proposal-decorators&quot;,</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;legacy&quot;: true</span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      [</span><br><span class="line">        &quot;@babel/plugin-proposal-class-properties&quot;,</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;loose&quot;: true</span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="常见插件一览"><a href="#常见插件一览" class="headerlink" title="常见插件一览"></a>常见插件一览</h2><h3 id="babel-plugin-proposal-decorators"><a href="#babel-plugin-proposal-decorators" class="headerlink" title="@babel/plugin-proposal-decorators"></a>@babel/plugin-proposal-decorators</h3><p><a href="https://babeljs.io/docs/en/next/babel-plugin-proposal-decorators.html#detail" target="_blank" rel="noopener">doc</a></p>
+<h3 id="babel-plugin-proposal-class-properties"><a href="#babel-plugin-proposal-class-properties" class="headerlink" title="@babel/plugin-proposal-class-properties"></a>@babel/plugin-proposal-class-properties</h3><p><a href="https://babeljs.io/docs/en/next/babel-plugin-proposal-class-properties.html#detail" target="_blank" rel="noopener">doc</a></p>
+<h3 id="babel-plugin-proposal-do-expressions"><a href="#babel-plugin-proposal-do-expressions" class="headerlink" title="@babel/plugin-proposal-do-expressions"></a>@babel/plugin-proposal-do-expressions</h3><ul>
+<li><a href="https://babeljs.io/docs/en/next/babel-plugin-proposal-do-expressions.html#detail" target="_blank" rel="noopener">doc</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let a = do &#123;</span><br><span class="line">  if(x &gt; 10) &#123;</span><br><span class="line">    &apos;big&apos;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    &apos;small&apos;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">// is equivalent to:</span><br><span class="line">let a = x &gt; 10 ? &apos;big&apos; : &apos;small&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="babel-plugin-proposal-export-default-from-【采用】"><a href="#babel-plugin-proposal-export-default-from-【采用】" class="headerlink" title="@babel/plugin-proposal-export-default-from 【采用】"></a>@babel/plugin-proposal-export-default-from 【采用】</h3><ul>
+<li><a href="https://babeljs.io/docs/en/next/babel-plugin-proposal-export-default-from" target="_blank" rel="noopener">doc</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export v from &apos;mod&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="babel-plugin-proposal-export-namespace-from-【采用】"><a href="#babel-plugin-proposal-export-namespace-from-【采用】" class="headerlink" title="@babel/plugin-proposal-export-namespace-from 【采用】"></a>@babel/plugin-proposal-export-namespace-from 【采用】</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export * as ns from &apos;mod&apos;;</span><br></pre></td></tr></table></figure>
+<h3 id="babel-plugin-proposal-function-bind-【采用】"><a href="#babel-plugin-proposal-function-bind-【采用】" class="headerlink" title="@babel/plugin-proposal-function-bind 【采用】"></a>@babel/plugin-proposal-function-bind 【采用】</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">::obj.func</span><br><span class="line">// is equivalent to:</span><br><span class="line">obj.func.bind(obj)</span><br></pre></td></tr></table></figure>
+<h3 id="babel-plugin-proposal-function-sent"><a href="#babel-plugin-proposal-function-sent" class="headerlink" title="@babel/plugin-proposal-function-sent"></a>@babel/plugin-proposal-function-sent</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.send 和generator有关</span><br></pre></td></tr></table></figure>
+<h3 id="babel-plugin-proposal-json-strings"><a href="#babel-plugin-proposal-json-strings" class="headerlink" title="@babel/plugin-proposal-json-strings"></a>@babel/plugin-proposal-json-strings</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const ex = &quot;before</span><br><span class="line">after&quot;;</span><br><span class="line"></span><br><span class="line">//output </span><br><span class="line">const ex = &quot;before\u2028after&quot;;</span><br></pre></td></tr></table></figure>
+<h3 id="babel-plugin-proposal-logical-assignment-operators"><a href="#babel-plugin-proposal-logical-assignment-operators" class="headerlink" title="@babel/plugin-proposal-logical-assignment-operators"></a>@babel/plugin-proposal-logical-assignment-operators</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a ||= b; =&gt; a || (a = b);</span><br><span class="line">a &amp;&amp;= b; =&gt; a &amp;&amp; (a = b)</span><br></pre></td></tr></table></figure>
+<h3 id="babel-plugin-proposal-nullish-coalescing-operator"><a href="#babel-plugin-proposal-nullish-coalescing-operator" class="headerlink" title="@babel/plugin-proposal-nullish-coalescing-operator"></a>@babel/plugin-proposal-nullish-coalescing-operator</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var foo = object.foo ?? &quot;default&quot;;</span><br><span class="line"></span><br><span class="line">// out</span><br><span class="line">var _object$foo;</span><br><span class="line"></span><br><span class="line">var foo = (_object$foo = object.foo) !== null &amp;&amp; _object$foo !== void 0 ? _object$foo : &quot;default&quot;;</span><br></pre></td></tr></table></figure>
+<h3 id="babel-plugin-proposal-numeric-separator"><a href="#babel-plugin-proposal-numeric-separator" class="headerlink" title="@babel/plugin-proposal-numeric-separator"></a>@babel/plugin-proposal-numeric-separator</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let budget = 1_000_000_000_000;</span><br><span class="line"></span><br><span class="line">// What is the value of `budget`? It&apos;s 1 trillion!</span><br><span class="line">//</span><br><span class="line">// Let&apos;s confirm:</span><br><span class="line">console.log(budget === 10 ** 12); // true</span><br></pre></td></tr></table></figure>
+<h3 id="babel-plugin-proposal-optional-chaining"><a href="#babel-plugin-proposal-optional-chaining" class="headerlink" title="@babel/plugin-proposal-optional-chaining"></a>@babel/plugin-proposal-optional-chaining</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">  foo: &#123;</span><br><span class="line">    bar: &#123;</span><br><span class="line">      baz: 42,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const baz = obj?.foo?.bar?.baz; // 42</span><br><span class="line"></span><br><span class="line">const safe = obj?.qux?.baz; // undefined</span><br><span class="line"></span><br><span class="line">// Optional chaining and normal chaining can be intermixed</span><br><span class="line">obj?.foo.bar?.baz; // Only access `foo` if `obj` exists, and `baz` if</span><br><span class="line">                   // `bar` exists</span><br></pre></td></tr></table></figure>
+<h3 id="babel-plugin-proposal-throw-expressions"><a href="#babel-plugin-proposal-throw-expressions" class="headerlink" title="@babel/plugin-proposal-throw-expressions"></a>@babel/plugin-proposal-throw-expressions</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function test(param = throw new Error(&apos;required!&apos;)) &#123;</span><br><span class="line">  const test = param === true || throw new Error(&apos;Falsey!&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="babel-plugin-syntax-dynamic-import"><a href="#babel-plugin-syntax-dynamic-import" class="headerlink" title="@babel/plugin-syntax-dynamic-import"></a>@babel/plugin-syntax-dynamic-import</h3><h3 id="babel-plugin-syntax-import-meta"><a href="#babel-plugin-syntax-import-meta" class="headerlink" title="@babel/plugin-syntax-import-meta"></a>@babel/plugin-syntax-import-meta</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">FE</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">babel</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/12/babel7/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-life_1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1079,7 +1197,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">babel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">typescript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodeJS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1088,10 +1214,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">other</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodeJS</a>
               </li>
              
               <li class="article-tag-list-item">
