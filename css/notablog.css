@@ -4,7 +4,7 @@
 }
 
 body {
-  background: var(--bg);
+  background: rgb(250 234 201 / 37%);
 }
 
 /* Navbar */
@@ -112,7 +112,7 @@ body {
 }
 
 .Header__Spacer {
-  margin-top: 20vh;
+  margin-top: 12vh;
 }
 
 .Header__Spacer--NoCover {
