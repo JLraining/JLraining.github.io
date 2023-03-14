@@ -21,7 +21,8 @@ body {
   height: 50px;
   padding: 10px 20px;
   /* Background blur stuff. */
-  background-color: var(--bg-blur);
+  background: #a5bc77;
+  /* background-color: var(--bg-blur); */
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   overflow-x: auto;
@@ -112,7 +113,7 @@ body {
 }
 
 .Header__Spacer {
-  margin-top: 12vh;
+  margin-top: 10vh;
 }
 
 .Header__Spacer--NoCover {
@@ -126,10 +127,10 @@ body {
 }
 
 .Header__Title {
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   margin-bottom: 0.25em;
   line-height: 1.2;
-  font-size: 2.625rem;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.005em;
 }
