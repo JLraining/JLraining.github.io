@@ -10,31 +10,40 @@
 <!-- Chrome, Firefox OS and Opera Status Bar Color -->
 <meta name="theme-color" content="#FFFFFF">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
-<link rel="stylesheet" type="text/css"
-  href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css">
 <link rel="stylesheet" type="text/css" href="css/SourceSansPro.css">
 <link rel="stylesheet" type="text/css" href="css/theme.css">
 <link rel="stylesheet" type="text/css" href="css/notablog.css">
 <!-- Favicon -->
 
-  <link rel="shortcut icon" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fa86755d1-d7c0-4214-9969-10bd17723e6b%2F14c9161b-ac22-44b3-ba34-fe5ad1169d1d.jpeg?table=collection&amp;id=eef6132e-2db7-4d90-bd95-b8ae4e7a15ec">
+<link rel="shortcut icon" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fa86755d1-d7c0-4214-9969-10bd17723e6b%2F14c9161b-ac22-44b3-ba34-fe5ad1169d1d.jpeg?table=collection&amp;id=eef6132e-2db7-4d90-bd95-b8ae4e7a15ec">
 
-<style>
+<!-- <style>
   :root {
     font-size: 20px;
   }
-</style>
-  <title>Building a website using koa2, sequelize, and Redis.&nbsp;|&nbsp;Lilian Kiang’s Blog</title>
+</style> -->
+  <title>Building a website using koa2, sequelize, and Redis.&nbsp;|&nbsp;Lilian Jiang’s Blog</title>
   <meta property="og:type" content="blog">
   <meta property="og:title" content="Building a website using koa2, sequelize, and Redis.">
   
-    <meta name="description" content="Build a website model using koa2 + sequelize + redis">
-    <meta property="og:description" content="Build a website model using koa2 + sequelize + redis">
+  <meta name="description" content="Build a website model using koa2 + sequelize + redis">
+  <meta property="og:description" content="Build a website model using koa2 + sequelize + redis">
   
   
-    <meta property="og:image" content="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text text-anchor=%22middle%22 dominant-baseline=%22middle%22 x=%2250%22 y=%2255%22 font-size=%2280%22&gt;⚙️&lt;/text&gt;&lt;/svg&gt;">
+  <meta property="og:image" content="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text text-anchor=%22middle%22 dominant-baseline=%22middle%22 x=%2250%22 y=%2255%22 font-size=%2280%22&gt;⚙️&lt;/text&gt;&lt;/svg&gt;">
   
   <style>
+    html {
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      html {
+        font-size: 13px;
+      }
+    }
+
     .DateTagBar {
       margin-top: 1.0rem;
     }
@@ -74,34 +83,34 @@
     <div class="Header__Spacer Header__Spacer--NoCover">
     </div>
     
-      <div class="Header__Icon">
-        <span><img class="inline-img-icon" src="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text text-anchor=%22middle%22 dominant-baseline=%22middle%22 x=%2250%22 y=%2255%22 font-size=%2280%22&gt;⚙️&lt;/text&gt;&lt;/svg&gt;"></span>
-      </div>
+    <div class="Header__Icon">
+      <span><img class="inline-img-icon" src="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text text-anchor=%22middle%22 dominant-baseline=%22middle%22 x=%2250%22 y=%2255%22 font-size=%2280%22&gt;⚙️&lt;/text&gt;&lt;/svg&gt;"></span>
+    </div>
     
     <h1 class="Header__Title">Building a website using koa2, sequelize, and Redis.</h1>
     
-      <div class="DateTagBar">
-        
-          <span class="DateTagBar__Item DateTagBar__Date">Posted on Mon, Mar 15, 2021</span>
-        
-        
-          <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--blue">
-            <a href="tag/Node.html">Node</a>
-          </span>
-        
-          <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--pink">
-            <a href="tag/Koa.html">Koa</a>
-          </span>
-        
-          <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--default">
-            <a href="tag/sequelize.html">sequelize</a>
-          </span>
-        
-          <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--gray">
-            <a href="tag/redis.html">redis</a>
-          </span>
-        
-      </div>
+    <div class="DateTagBar">
+      
+      <span class="DateTagBar__Item DateTagBar__Date">Posted on Mon, Mar 15, 2021</span>
+      
+      
+      <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--blue">
+        <a href="tag/Node.html">Node</a>
+      </span>
+      
+      <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--pink">
+        <a href="tag/Koa.html">Koa</a>
+      </span>
+      
+      <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--default">
+        <a href="tag/sequelize.html">sequelize</a>
+      </span>
+      
+      <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--gray">
+        <a href="tag/redis.html">redis</a>
+      </span>
+      
+    </div>
     
   </header>
   <article id="https://www.notion.so/28c6bcf80b564485a9e4c04f8a36eb2a" class="PageRoot PageRoot--FullWidth"><h1 id="https://www.notion.so/9fcf2688afa2480483ff32aaa031b85b" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" href="#https://www.notion.so/9fcf2688afa2480483ff32aaa031b85b"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Summary</span></span></h1><div id="https://www.notion.so/3cf5b192bae448509f80e1967d8e98f1" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">Koa2</code></span><span class="SemanticString"> is a lightweight and flexible web framework that provides a minimalist approach to building web applications. It uses modern JavaScript syntax and provides middleware functions to simplify the development process.</span></span></p></div><div id="https://www.notion.so/8f88aaf064024035ab471742dbcc3f77" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">Sequelize</code></span><span class="SemanticString"> is a powerful ORM library that allows developers to easily interact with databases using JavaScript syntax. It provides many features, such as database migrations, associations, and transactions, which make it easy to manage complex database structures.</span></span></p></div><div id="https://www.notion.so/21030ab360b2429d98ca48239ad15d15" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">Redis</code></span><span class="SemanticString"> is an in-memory data store that can be used as a cache or a message broker, providing a fast and efficient way to store and retrieve data. It is particularly useful for caching frequently accessed data and reducing the load on the database server.</span></span></p></div><div id="https://www.notion.so/4c382e86b4504efaa839157a0d7e72ea" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">Using Koa2, Sequelize, and Redis together provides a robust and scalable architecture for building web applications. Koa2 provides a lightweight and flexible server-side framework, Sequelize provides a powerful ORM for database management, and Redis provides a fast and efficient caching layer.</span></span></p></div><div id="https://www.notion.so/c3f947d149044d64ab8ce072af44df65" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"></span></p></div><div id="https://www.notion.so/2e11b51bf2304841b899804faeb5b8d2" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">Use Koa2 to build a website model for learning Koa2, as shown in the architecture diagram. Source code address: </span><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" href="https://github.com/JLraining/koa2-note.%5D(https://github.com/JLraining/koa2-note)">https://github.com/JLraining/koa2-note</a></span></span></p></div><div id="https://www.notion.so/b9b19d29a4db4388b8b3e58298f796f1" class="Image Image--PageWidth"><figure><a href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F239abaf9-c478-48bd-a917-0337f409ea33%2FUntitled.png?width=1068&amp;table=block&amp;id=b9b19d29-a4db-4388-b8b3-e58298f796f1"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F239abaf9-c478-48bd-a917-0337f409ea33%2FUntitled.png?width=1068&amp;table=block&amp;id=b9b19d29-a4db-4388-b8b3-e58298f796f1" style="width:100%"/></a><figcaption><span class="SemanticStringArray"></span></figcaption></figure></div><div id="https://www.notion.so/056ad548e0bc43f6adf73e4866a0e49e" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"></span></p></div><h1 id="https://www.notion.so/64b898b2d7c94dbd9978099c0981fecd" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" href="#https://www.notion.so/64b898b2d7c94dbd9978099c0981fecd"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Basics of Koa2</span></span></h1><h2 id="https://www.notion.so/0c26cd34e6cf43dc80d3f302abfdac0b" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/0c26cd34e6cf43dc80d3f302abfdac0b"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Quick Start with Running a Http Service</span></span></h2><div id="https://www.notion.so/b13597a98a404445b6ee977220e51b50" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">A Koa application is an object containing a set of middleware functions that are organized and executed in a stack-like manner. A key design point is to provide high-level &quot;syntactic sugar&quot; in its low-level middleware layer. This improves interoperability, robustness, and makes writing middleware more enjoyable.</span></span></p></div><pre id="https://www.notion.so/f8b46c3cb0304b43bd14117c72273f53" class="Code Code--NoWrap"><code><span class="SemanticStringArray"><span class="SemanticString"><span><span class="token keyword">const</span> Koa <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'koa'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -335,11 +344,11 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
   ctx<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ErrorModel</span><span class="token punctuation">(</span>loginCheckFailInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></span></span></span></code></pre><div id="https://www.notion.so/c93aa90170084cc5a8aa7cca44b88cd5" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"></span></p></div></article>
   <footer class="Footer">
-  <div>&copy; Lilian Kiang’s Blog 2022</div>
-  <div>&centerdot;</div>
+  <!-- <div>&copy; Lilian Jiang’s Blog</div> -->
+  <!-- <div>&centerdot;</div>
   <div>Powered by <a href="https://github.com/dragonman225/notablog" target="_blank"
       rel="noopener noreferrer">Notablog</a>.
-  </div>
+  </div> -->
 </footer>
 </body>
 
