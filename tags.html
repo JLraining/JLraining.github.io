@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-  <base href="../">
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- iOS Safari -->
@@ -24,27 +23,28 @@
     font-size: 20px;
   }
 </style> -->
-  <title>#Koa | Lilian Jiang’s Blog</title>
+  <title>Article Category</title>
   <meta property="og:type" content="blog">
-  <meta property="og:title" content="#Koa | Lilian Jiang’s Blog">
-  <meta name="description" content="Posts with tag #Koa">
-  <meta property="og:description" content="Posts with tag #Koa">
-  <style>
-    html {
-      font-size: 18px;
-    }
-
-    @media (max-width: 768px) {
-      html {
-        font-size: 15px;
-      }
-    }
-
-    .DateTagBar {
-      margin-top: 1.0rem;
-    }
-  </style>
+  <meta property="og:title" content="Article Category">
+  
+  <meta name="description" content="再吃一颗苹果">
+  <meta property="og:description" content="再吃一颗苹果">
+  
+  
+  <meta property="og:image" content="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fa86755d1-d7c0-4214-9969-10bd17723e6b%2F14c9161b-ac22-44b3-ba34-fe5ad1169d1d.jpeg?table=collection&amp;id=eef6132e-2db7-4d90-bd95-b8ae4e7a15ec">
+  
 </head>
+<style>
+  html {
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    html {
+      font-size: 14px;
+    }
+  }
+</style>
 
 <body>
   <nav class="Navbar">
@@ -87,50 +87,98 @@
   
 </nav>
   <header class="Header">
-    <div class="Header__Spacer--NoCover"></div>
-    <h1 class="Header__Title">#Koa</h1>
-  </header>
-  <article class="ArticleList">
-
-  <article class="Article">
-    <h3 class="Article__Title">
-      
-        <span><img class="inline-img-icon" src="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text text-anchor=%22middle%22 dominant-baseline=%22middle%22 x=%2250%22 y=%2255%22 font-size=%2280%22&gt;⚙️&lt;/text&gt;&lt;/svg&gt;"></span>
-      
-      <a href="koa2+sequelize+redis.html">
-        Building a website using koa2, sequelize, and Redis.
-      </a>
-    </h3>
-    
-      <p class="Article__Desc">
-        <span class="SemanticStringArray"><span class="SemanticString">Build a website model using koa2 + sequelize + redis</span></span>
-      </p>
-    
-    <div class="DateTagBar">
-      
-        <span class="DateTagBar__Item DateTagBar__Date">Posted on Mon, Mar 15, 2021</span>
-      
-      
-        <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--blue">
-          <a href="tag/Node.html">Node</a>
-        </span>
-      
-        <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--pink">
-          <a href="tag/Koa.html">Koa</a>
-        </span>
-      
-        <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--default">
-          <a href="tag/sequelize.html">sequelize</a>
-        </span>
-      
-        <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--gray">
-          <a href="tag/redis.html">redis</a>
-        </span>
-      
+    <!-- 
+    <div class="Header__Cover">
+      <img src="https://www.notion.so/images/page-cover/gradients_8.png">
     </div>
-  </article>
+     -->
+    <div class="Header__Spacer ">
+    </div>
+    <h1 class="Header__Title">Article Category</h1>
+  </header>
+  
+  
+  <style>
+  .Tags_Page_Tag {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    flex-direction: column;
+  }
 
-</article>
+  .Tags__CategoryTitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: rgb(38, 38, 37);
+  }
+
+  .Tags__Tag {
+    display: inline-block;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 0.95rem;
+    font-weight: medium;
+    line-height: 1.2;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .Tags__Tag:hover {
+    background-color: hsla(200, 20%, 90%, 1);
+    color: hsla(200, 20%, 30%, 1) !important;
+    transform: scale(1.05);
+  }
+</style>
+
+<div class="Tags_Page_Tag">
+  
+
+  
+
+  
+  <h1> Tags </h1>
+
+  
+  <div>
+    <h2 class="Tags__CategoryTitle"># FE </h2>
+    
+    <span class="DateTagBar__Tag--red Tags__Tag">
+      <a href="tag/typescript.html">typescript (1)</a>
+    </span>
+    
+    <span class="DateTagBar__Tag--blue Tags__Tag">
+      <a href="tag/Node.html">Node (2)</a>
+    </span>
+    
+    <span class="DateTagBar__Tag--purple Tags__Tag">
+      <a href="tag/cli.html">cli (1)</a>
+    </span>
+    
+  </div>
+  
+  <div>
+    <h2 class="Tags__CategoryTitle"># BE </h2>
+    
+    <span class="DateTagBar__Tag--default Tags__Tag">
+      <a href="tag/sequelize.html">sequelize (1)</a>
+    </span>
+    
+    <span class="DateTagBar__Tag--gray Tags__Tag">
+      <a href="tag/redis.html">redis (1)</a>
+    </span>
+    
+  </div>
+  
+  <div>
+    <h2 class="Tags__CategoryTitle"># Others </h2>
+    
+  </div>
+  
+</div>
+
   <footer class="Footer">
   <!-- <div>&copy; Lilian Jiang’s Blog</div> -->
   <!-- <div>&centerdot;</div>
