@@ -4,7 +4,7 @@
 }
 
 body {
-  background: #F8FAFA;
+  background: rgba(250, 234, 201, 0.37);
 }
 
 /* 
@@ -22,8 +22,9 @@ html {
 
 .Navbar {
   display: flex;
+  /* flex-wrap: wrap; */
   align-items: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: bold;
   position: fixed;
   top: 0;
@@ -32,18 +33,17 @@ html {
   width: 100%;
   min-height: 45px;
   padding: 10px 20px;
-  background-color: rgb(158 199 134);;
+  background-color: rgb(165, 188, 119);;
   font-family: 'Montserrat', sans-serif;
-  color: #157879;
+  /* color: #157879; */
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   overflow-x: auto;
-  border: 0 solid #dae1e7;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+  border: 0 solid #132a17;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,.1);
 }
 
 .Navbar a {
-  margin-left: 5px;
   color: #333;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -91,7 +91,7 @@ html {
 }
 
 .Navbar__Delim {
-  margin: 0 3px;
+  margin: 0 5px;
   color: rgba(55, 53, 47, 0.4);
 }
 
